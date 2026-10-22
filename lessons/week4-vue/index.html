@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue 快速入门课堂练习</title>
+  <style>
+    body {
+      font-family: Arial, 'Microsoft YaHei', sans-serif;
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 0 20px;
+      line-height: 1.8
+    }
+
+    section {
+      border-bottom: 1px solid #ddd;
+      padding: 16px 0
+    }
+
+    input,
+    button {
+      padding: 7px;
+      margin: 5px
+    }
+
+    a {
+      margin: 10px
+    }
+
+    [v-cloak] {
+      display: none
+    }
+
+    code {
+      background: #eee;
+      padding: 3px
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <h1>Vue 快速入门</h1>
+    <section>
+      <h2>1. 插值表达式和 v-model</h2><input v-model="message" aria-label="消息">
+      <p>{{ message }}</p>
+      <p>大写：{{ message.toUpperCase() }}</p>
+    </section>
+    <section>
+      <h2>2. v-bind 属性绑定</h2><input v-model="url" aria-label="链接地址"><a v-bind:href="url" target="_blank"
+        rel="noopener">链接1</a><a :href="url" target="_blank" rel="noopener">链接2</a>
+    </section>
+    <section>
+      <h2>3. v-on 事件绑定</h2><button v-on:click="handle">click me</button><button @click="handle">click me2</button>
+      <p>已点击 {{ count }} 次</p>
+    </section>
+    <section>
+      <h2>4. v-if / v-else-if / v-else</h2><label>年龄 <input type="number" v-model.number="age" min="0"
+          max="120"></label>
+      <p v-if="age === '' || age < 0 || age > 120">请输入 0—120 的年龄</p>
+      <p v-else-if="age <= 35">年轻人（35岁及以下）</p>
+      <p v-else-if="age < 60">中年人（36—59岁）</p>
+      <p v-else>老年人（60岁及以上）</p>
+    </section>
+    <section>
+      <h2>5. v-show 条件显示</h2>
+      <p v-show="age !== '' && age >= 0 && age <= 35">年轻人（35岁及以下）</p>
+      <p v-show="age > 35 && age < 60">中年人（36—59岁）</p>
+      <p v-show="age >= 60 && age <= 120">老年人（60岁及以上）</p>
+    </section>
+    <section>
+      <h2>6. v-for 列表渲染</h2>
+      <div v-for="(addr, index) in addrs" :key="addr">{{ index + 1 }}. {{ addr }}</div>
+    </section>
+    <section>
+      <h2>7. mounted 生命周期</h2>
+      <p>{{ mountedMessage }}</p>
+    </section>
+  </div>
+  <script src="vue.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
